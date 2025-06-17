@@ -1,50 +1,30 @@
-#include <stdio.h>
-
-int main()
-{
-    int x, y = 1;
-    printf("To exit, press 0\n");
-
-    while (y != 0)
-    {
-        printf("Enter 1 to continue, 0 to exit: ");
-        scanf("%d", &y);
-
-        if (y == 0)
-            break;
-
-        printf("Enter the number to check if it's prime: ");
-        scanf("%d", &x);
-
-        if (x <= 1)
-        {
-            printf("%d is not a prime number\n", x);
-        }
-        else if (x == 2 || x == 3)
-        {
-            printf("%d is a prime number\n", x);
-        }
-        else if (x % 2 == 0 || x % 3 == 0)
-        {
-            printf("%d is not a prime number\n", x);
-        }
-        else
-        {
-            int isPrime = 1; // assume prime
-            for (int i = 5; i * i <= x; i += 6)
-            {
-                if (x % i == 0 || x % (i + 2) == 0)
-                {
-                    isPrime = 0;
-                    break;
-                }
-            }
-            if (isPrime)
-                printf("%d is a prime number\n", x);
-            else
-                printf("%d is not a prime number\n", x);
-        }
+#include<stdio.h>
+int main() {
+    int num ,flag = 1,i=3;
+    printf("Enter the number: ");
+    scanf("%d",&num);
+    if(num < 2){
+        flag = 0;
     }
-
-    return 0;
+    else if (num == 2) {
+    flag = 1;
+    }
+    else if (num % 2 == 0){//for even number optimization
+        flag = 0;
+    }
+    else{
+        while (i*i<=num)
+        {
+            if(num%i==0){
+                flag = 0;
+                break;
+            }
+            i += 2;//skip even numbers for better performance:
+        } 
+    }
+    if(flag){
+        printf("The give number %d is a prime number",num);
+    }else{
+        printf("The give number %d is Not a prime number",num);
+    }
 }
