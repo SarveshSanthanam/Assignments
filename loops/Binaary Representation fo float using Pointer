@@ -1,0 +1,36 @@
+#include<stdio.h>
+int main()
+{
+float a;
+int pos1,pos2,pos3;
+printf("Enter the float value :");
+scanf("%f",&a);
+int* i = (int*)&a;
+char* c = (char*)&a;
+short int* s = (short int*)&a;
+
+pos1 = sizeof(*i)*8;
+pos2 = sizeof(*c)*8;
+pos3 = sizeof(*s)*8;
+
+printf("\n float value %f :",a);
+while(pos1--)
+printf("%d",(*i >> pos1) & 1);
+
+c = c+3;
+printf("\n float value %f :",a);
+for(int j = 0; j<4 ;j++)
+{	for(int j= 7 ; j>=0 ; j--)
+	printf("%d", (*c >> j) & 1);
+c--;
+}
+
+s = s + 1;
+printf("\n float value %f :",a);
+for(int j = 0; j<2 ;j++)
+{	for(int j= 15 ; j>=0 ; j--)
+	printf("%d", (*s >> j) & 1);
+s--;
+}
+
+}
